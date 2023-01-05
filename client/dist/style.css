@@ -1,3 +1,25 @@
 body {
   font-family: sans-serif, arial;
+  padding: 1rem;
+  margin: 1rem;
+  border: 10px solid #ff0000;
+}
+
+div {
+  padding: 1rem;
+  margin: 1rem;
+}
+
+h1 {
+  color: #4a0576;
+  border: 5px solid #045894;
+}
+
+.movie-list {
+  color: #01532d;
+  border: 2px solid #ff0000;
+}
+
+.movie-title {
+  border: 2px dotted #040505;
 }
