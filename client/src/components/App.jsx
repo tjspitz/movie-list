@@ -1,9 +1,9 @@
 import React from 'react';
-import {useState} from 'react';
 import MovieList from './MovieList.jsx';
 import MovieListEntry from './MovieListEntry.jsx';
 import SearchBar from './SearchBar.jsx';
 import AddNewMovie from './AddNewMovie.jsx';
+import {useState} from 'react';
 
 const App = () => {
 
@@ -17,9 +17,9 @@ const App = () => {
       ]
     );
 
-  // const [searchedMovies, setSearchedMovies] = useState([]);
-
   const [search, setSearch] = useState('');
+  const [movieName, setMovieName] = useState('');
+  const [newMovieName, setNewMovieName] = useState('');
 
   const onSearchChange = (string) => {
     setSearch(string);
@@ -34,9 +34,23 @@ const App = () => {
     );
   };
 
+  const onAddMovieChange = (string) => {
+    setMovieName(string);
+  }
+
+  const onAddClick = (movie) => {
+    console.log('arg: ', movie);
+    // setNewMovieName({title.movie});
+  }
+
   return (
     <>
       <h1 className="title">MovieList</h1>
+        <AddNewMovie
+          onClick={onAddClick}
+          onChange={onAddMovieChange}
+
+        />
         <SearchBar
           onChange={onSearchChange}
           onClick={onSearchClick}
@@ -49,6 +63,8 @@ const App = () => {
 };
 
 export default App;
+
+// const [searchedMovies, setSearchedMovies] = useState([]);
 
 // const SearchBar = ({onChange, onClick, searchedMovies}) => {
 
