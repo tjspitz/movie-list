@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddNewMovie = ({onClick, onChange, movieName}) => {
+const AddNewMovie = ({onChange, onClick, movieName}) => {
 
   const handleChange = event => onChange(event.target.value);
   const handleSubmit = event => onClick(movieName);

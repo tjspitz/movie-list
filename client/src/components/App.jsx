@@ -38,17 +38,20 @@ const App = () => {
     setMovieName(string);
   }
 
-  const onAddClick = (movie) => {
+  const onAddMovieClick = (movie) => {
+    event.preventDefault();
+
     console.log('arg: ', movie);
-    // setNewMovieName({title.movie});
+    setNewMovieName({title.movie});
   }
 
   return (
     <>
       <h1 className="title">MovieList</h1>
         <AddNewMovie
-          onClick={onAddClick}
+          onClick={onAddMovieClick}
           onChange={onAddMovieChange}
+          movieName={movieName}
 
         />
         <SearchBar
@@ -63,30 +66,6 @@ const App = () => {
 };
 
 export default App;
-
-// const [searchedMovies, setSearchedMovies] = useState([]);
-
-// const SearchBar = ({onChange, onClick, searchedMovies}) => {
-
-//   const handleChange = event => onChange(event.target.value);
-//   const handleSubmit = event => onClick(searchedMovies);
-
-//   return (
-//     <div className="search-bar">
-//       <input className="search-bar input-field"
-//         type="text"
-//         placeholder="Find a movie..."
-//         onChange={handleChange}
-//       />
-//       <button className="btn search-bar"
-//         onClick={handleSubmit}
-//       >
-//         Find!
-//       </button>
-//     </div>
-//   );
-
-// };
 
 // const MovieList = ({movies}) => {
 //   // in react, && is like.... "then do this"...?
