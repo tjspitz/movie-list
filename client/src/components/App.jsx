@@ -41,8 +41,10 @@ const App = () => {
   const onAddMovieClick = (movie) => {
     event.preventDefault();
 
+    // check if movie name already exists
+    
     console.log('arg: ', movie);
-    setNewMovieName({title.movie});
+    setNewMovieName({movie.title});
   }
 
   return (
