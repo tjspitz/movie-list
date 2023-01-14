@@ -1,26 +1,37 @@
+
 import React from 'react';
+import axios from 'axios';
+import {useState, useEffect} from 'react';
+
 import MovieList from './MovieList.jsx';
 import MovieListEntry from './MovieListEntry.jsx';
 import SearchBar from './SearchBar.jsx';
 import AddNewMovie from './AddNewMovie.jsx';
-import {useState} from 'react';
 
 const App = () => {
 
-  const [movies, setMovies] = useState(
-      [
-        {title: 'Mean Girls'},
-        {title: 'Hackers'},
-        {title: 'The Grey'},
-        {title: 'Sunshine'},
-        {title: 'Ex Machina'},
-      ]
-    );
-
+  // =================== STATES ===================
+  const [movies, setMovies] = useState([]);
+  const [watched, setWatched] = useState(0);
   const [search, setSearch] = useState('');
   const [movieName, setMovieName] = useState('');
-  const [newMovieName, setNewMovieName] = useState('');
 
+  // =================== EFFECTS ===================
+  // re-render the page whenever a movie is added
+  useEffect(() => {reRender()}, [onAddMovieClick]);
+
+  // =================== HELPERS ===================
+  const reRender = () => {
+    axios.get('/api/movies')
+      .then(response => {
+        setMovies(response.data);
+        console.log(response.data);
+        console.log(`Got movie list!`);
+      })
+      .catch(error => console.log(`Oh noes! I failed to get your movies!`))
+  }
+
+  // =================== HANDLERS ===================
   const onSearchChange = (string) => {
     setSearch(string);
   }
@@ -41,12 +52,23 @@ const App = () => {
   const onAddMovieClick = (movie) => {
     event.preventDefault();
 
-    // check if movie name already exists
-    
-    console.log('arg: ', movie);
-    setNewMovieName({movie.title});
+    // capitalize the first letter
+    // turn the title into a movie object
+    let firstChar = movie.slice(0, 1).toUpperCase();
+    let otherChars = movie.slice(1).toLowerCase();
+
+    movie = firstChar + otherChars;
+    movie = {title: movie};
+
+    axios.post('/api/movies', movie)
+      .then(response => console.log(`Added '${movie.title}' to list!`))
+      .catch(error => console.log(`Oh noes, I couldn't add '${movie.title}' to list!`))
+
+      reRender();
+
   }
 
+  // =================== COMPONENTS ===================
   return (
     <>
       <h1 className="title">MovieList</h1>
@@ -68,27 +90,3 @@ const App = () => {
 };
 
 export default App;
-
-// const MovieList = ({movies}) => {
-//   // in react, && is like.... "then do this"...?
-//     // and if that condition fails, there is no ||, we just proceed to the mapping...
-
-//   // but if we don't want to mess with that, we stick the ternary...
-//     // return `right here ?` (...) `: and here`
-
-//   return (
-//     <div className="movie-list">
-//       {!movies.length &&
-//       <div>Sorry, I couldn't find any movies that match your search...</div>}
-//       {movies.map(movie =><MovieListEntry movie={movie}/>)}
-//     </div>
-//   )
-
-// };
-
-// const MovieListEntry = ({movie}) => {
-//   return (
-//     <div className="movie-title">{movie.title}</div>
-//   );
-
-// };
