@@ -4,12 +4,8 @@ import {useState} from 'react';
 const ListOps = ({reRender, active, setActive}) => {
 
   const onAllMoviesClick = (event) => {
-    console.log('click event: ', event.target.className);
-
     reRender(-1);
-
     setActive(event.target.className);
-
   };
 
   const onWatchedMoviesClick = (event) => {

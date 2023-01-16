@@ -67,6 +67,7 @@ const App = () => {
     );
 
   };
+
   // === Add Movie Bar ===
   const onAddMovieChange = (string) => {
     setMovieName(string);
@@ -74,10 +75,6 @@ const App = () => {
 
   const onAddMovieClick = (movie) => {
     event.preventDefault();
-
-    // let firstChar = movie.slice(0, 1).toUpperCase();
-    // let otherChars = movie.slice(1).toLowerCase();
-    // movie = firstChar + otherChars;
 
     movie = { title: formatTitle(movie) };
 
@@ -93,9 +90,7 @@ const App = () => {
   // see ListOps.jsx
 
   // === Watch Toggle ===
-
   const onWatchClick = (movie) => {
-    console.log('movie: ', movie)
 
     axios.put('/api/movies', movie)
       .then(response => console.log(`'${movie.title}''s 'watch' status is updated!`))

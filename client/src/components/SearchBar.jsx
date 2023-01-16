@@ -3,10 +3,7 @@ import React from 'react';
 const SearchBar = ({onChange, onClick, searchedMovies}) => {
 
   const handleChange = event => onChange(event.target.value);
-  const handleSubmit = event => {
-    onClick(searchedMovies);
-    console.log(event.target)
-  };
+  const handleSubmit = event => onClick(searchedMovies);
 
   return (
     <div className="search-bar">

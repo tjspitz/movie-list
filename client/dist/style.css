@@ -45,14 +45,3 @@ h1 {
 .btn:hover {
   background-color: #c9eedc;
 }
-
-.active {
-  background-color: #59eba5;
-}
-/* .watch-toggle {
-  text-decoration: line-through;
-}
-
-.watch-toggle:hover {
-  text-decoration: none;
-} */
