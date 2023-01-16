@@ -27,9 +27,7 @@ const App = () => {
       .then(response => {
         option < 0 ? setMovies(response.data)
           : option ? setMovies(response.data.filter(movie => movie.watched))
-            : setMovies(response.data.filter(movie => !movie.watched))
-
-        console.log(response.data);
+          : setMovies(response.data.filter(movie => !movie.watched))
         console.log(`Got movie list!`);
       })
       .catch(error => console.log(`Oh noes! I failed to get your movies!`))
