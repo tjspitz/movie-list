@@ -8,6 +8,7 @@ module.exports = {
 
   retrieveAll: callback => {
     console.log('\nGET got here\n');
+
     // query the database
     db.query(
       `SELECT * FROM movies`,
@@ -21,6 +22,7 @@ module.exports = {
 
   create: (req, callback) => {
     console.log('\nPOST got here\n');
+
     db.query(
       `INSERT INTO movies (title) VALUES ('${req.title}')`,
       (err) => {
@@ -31,13 +33,17 @@ module.exports = {
   },
 
   // SOME DAY
-  // update: (req, callback) => {
-  //   console.log('\nPUT got here\n');
+  update: (req, callback) => {
+    console.log('\nPUT got here\n', );
 
-  //   db.query(
-
-  //   );
-  // },
+    db.query(
+      `UPDATE movies SET watched = '${req.watched}' WHERE id = ${req.id}`,
+      (err) => {
+        err ? callback(err)
+            : callback(null, console.log(`Toggled '${req.title}''s status to '${req.watched}'`));
+      }
+    );
+  }
 
   // delete: (req, callback) => {
   //   console.log('\nDELETE got here\n');

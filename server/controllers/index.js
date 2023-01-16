@@ -36,18 +36,22 @@ module.exports = {
   },
 
   // SOME DAY
-  // put: (req, res) => {
-  //   // wraps a model method
-  //   // needs to forward the req so an item can be updated
-  //   models.update(req.body, (err, data) => {
-  //     if (err) {
-  //       consol.log('PUT (update) error');
-  //       res.sendStatus(404);
-  //     } else {
-  //       res.send(data);
-  //     }
-  //   });
-  // },
+  put: (req, res) => {
+    console.log('======================');
+    // wraps a model method
+    // needs to forward the req so an item can be updated
+    if (req.body.watched) req.body.watched = 0;
+    else req.body.watched = 1;
+
+    models.update(req.body, (err, data) => {
+      if (err) {
+        consol.log('PUT (update) error');
+        res.sendStatus(404);
+      } else {
+        res.send(data);
+      }
+    });
+  }
 
   // delete: (req, res) => {
   //   // wraps a model method
