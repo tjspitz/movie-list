@@ -14,3 +14,5 @@ db.connect()
 
 // export it for use elsewhere
 module.exports = db;
+
+// ===== MONGO ITERATION =====
